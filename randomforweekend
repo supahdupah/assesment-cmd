@@ -11,6 +11,7 @@ file read
 7. Models
 
 logging
+DI?
 unit tests / how to run
 
 later exception handling / fallbacks / retries if necessary
