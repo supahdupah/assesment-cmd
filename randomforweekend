@@ -10,6 +10,7 @@ file read
 6. Repo
 7. Models
 
+logging
 unit tests / how to run
 
 later exception handling / fallbacks / retries if necessary
