@@ -51,7 +51,7 @@ namespace Importer
                             };
 
                             var result = await _mediator.Send(request, cancellationToken);
-                            Console.WriteLine("\n Capterra Result: "+ result.ImportedData);
+                            Console.WriteLine("\n Import Capterra Result: "+ result.ImportedData);
                         }
                         break;
                     case 2:
@@ -64,7 +64,7 @@ namespace Importer
                             };
 
                             var result = await _mediator.Send(request, cancellationToken);
-                            Console.WriteLine("\n SoftwareAdvice Result: " + result.ImportedData);
+                            Console.WriteLine("\n Import SoftwareAdvice Result: " + result.ImportedData);
                         }
                         break;
                     case 4:
