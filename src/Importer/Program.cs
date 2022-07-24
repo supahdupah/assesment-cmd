@@ -1,10 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using Importer;
-using Importer.ServiceExtensions;
+﻿using Importer;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Operations.DependencyInjection;
 using System.Reflection;
 
 public static class Program

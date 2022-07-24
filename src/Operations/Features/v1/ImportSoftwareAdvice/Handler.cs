@@ -1,10 +1,10 @@
-﻿using Infrastructure;
+﻿using MediatR;
 using Newtonsoft.Json;
 using Operations.Shared;
 
 namespace Operations.Features.v1.ImportSoftwareAdvice
 {
-    public class Handler : IHandler<Command>
+    public class Handler : IRequestHandler<ImportSoftwareAdviceRequest, ImportSoftwareAdviceResponse>
     {
         private readonly IFileReader _fileReader;
 
@@ -12,11 +12,13 @@ namespace Operations.Features.v1.ImportSoftwareAdvice
         {
             _fileReader = fileReader;
         }
-        public async Task HandleAsync(Command command, CancellationToken cancellationToken = default)
-        {
-            var result = await _fileReader.ReadFileAsync(command.FileName, cancellationToken);
-            if (result == null) ;
 
+        public async Task<ImportSoftwareAdviceResponse> Handle(ImportSoftwareAdviceRequest request, CancellationToken cancellationToken)
+        {
+            var result = await _fileReader.ReadFileAsync(request.FilePath, cancellationToken);
+            if (result == null) ;
+            //parse/deserialise
+            //insert to db
             throw new NotImplementedException();
         }
     }

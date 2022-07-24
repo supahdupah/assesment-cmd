@@ -2,7 +2,8 @@
 
 namespace Operations.Features.v1.ImportCapterra
 {
-    public class Command : BaseCommand
+    public class ImportCapterraResponse
     {
+        public string OutputMessage { get; set; }
     }
 }

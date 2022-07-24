@@ -19,12 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".repo", ".repo", "{6F67A089
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "feed-products", "feed-products", "{C7AF2EFB-00DC-4B18-8C3B-9920A07EAF24}"
-	ProjectSection(SolutionItems) = preProject
-		feed-products\capterra.yaml = feed-products\capterra.yaml
-		feed-products\softwareadvice.json = feed-products\softwareadvice.json
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operations", "src\Operations\Operations.csproj", "{88617B4E-F75F-4EDB-9D4F-B663933DB799}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D6A3AAC0-35A4-4FB0-BBFF-3F905903B9A7}"
