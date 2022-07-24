@@ -18,17 +18,11 @@ public static class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((hostingContext, services) =>
             {
-                //db context if needed
-                //oth
                 services.AddMediatR(Assembly.GetExecutingAssembly());
                 services.AddSingleton<IHostedService, App>();
                 services.AddV1Services();
             });
 }
-//logging
-//DI?
-//unit tests / how to run
-
 //further
 //if the process automated? cache/circuit breakers/object logging/fallbacks?
 //later exception handling / fallbacks / retries if necessary

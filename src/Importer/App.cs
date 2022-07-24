@@ -4,11 +4,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Operations.Features.v1.ImportCapterra;
 using Operations.Features.v1.ImportSoftwareAdvice;
-using Operations.Shared;
 
 namespace Importer
 {
-    //mediatr
     public class App : IHostedService
     {
         private readonly ILogger _logger;
@@ -19,6 +17,7 @@ namespace Importer
             _logger = logger;
             _serviceScopeFactory = serviceScopeFactory;
         }
+
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             var exit = false;
@@ -27,7 +26,6 @@ namespace Importer
                 Console.WriteLine("Select and enter the number of your chosen source to process");
                 Console.WriteLine("\n 1. Capterra");
                 Console.WriteLine("\n 2. Software Advice");
-                Console.WriteLine("\n 3. All"); // if have time later
 
                 Console.WriteLine("\n 4. Exit Program \n");
 
@@ -38,7 +36,6 @@ namespace Importer
                 if (!isInt)
                 {
                     Console.WriteLine("Selection and entered key must be a number \n");
-                    //return;
                 }
 
                 switch (selection)
@@ -53,7 +50,7 @@ namespace Importer
                             };
 
                             var result = await _mediator.Send(request, cancellationToken);
-                            Console.WriteLine(result.ImportedData);
+                            Console.WriteLine("\n Capterra Result: "+ result.ImportedData);
                         }
                         break;
                     case 2:
@@ -66,7 +63,7 @@ namespace Importer
                             };
 
                             var result = await _mediator.Send(request, cancellationToken);
-                            Console.WriteLine(result.ImportedData);
+                            Console.WriteLine("\n SoftwareAdvice Result: " + result.ImportedData);
                         }
                         break;
                     case 4:
@@ -82,7 +79,7 @@ namespace Importer
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
