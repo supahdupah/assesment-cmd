@@ -1,54 +1,32 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-var exit = false;
-while (exit == false)
+using Importer;
+using Importer.ServiceExtensions;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Reflection;
+
+public static class Program
 {
-    Console.WriteLine("Select and enter the number which source to process");
-    Console.WriteLine("\n 1. Capterra");
-    Console.WriteLine("\n 2. Software Advice");
-    Console.WriteLine("\n 3. All"); // if have time later
-    
-    Console.WriteLine("\n 4. Exit Program \n");
-
-    var input = Console.ReadLine();
-    int selection;
-    var isInt = int.TryParse(input, out selection);
-
-    if (!isInt)
+    public static async Task Main(string[] args)
     {
-        Console.WriteLine("Selection and entered key must be a number \n");
-        return;
+        var hostBuilder = CreateHostBuilder(args);
+
+        await hostBuilder.RunConsoleAsync();
     }
 
-
-    // split/refactor later if needed with a selector/strategy
-    // 
-    var capterraHandler = new Operations.Features.v1.ImportCapterra.Handler();
-    var softwareAdviceHandler = new Operations.Features.v1.ImportSoftwareAdvice.Handler();
-
-    switch (selection)
-    {
-        case 1:
-            await capterraHandler.HandleAsync(new Operations.Features.v1.ImportCapterra.Command() { FilePath = });
-            break;
-        case 2:
-            await softwareAdviceHandler.HandleAsync( new Operations.Features.v1.ImportSoftwareAdvice.Command());
-            break;
-        case 4:
-            exit = true;
-            break;
-    }
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureServices((hostingContext, services) =>
+            {
+                //db context if needed
+                //oth
+                services.AddMediatR(Assembly.GetExecutingAssembly());
+                services.AddSingleton<IHostedService, App>();
+                services.AddV1Services();
+            });
 }
-
-//public class Handler
-//{
-//    public async Task Handle()
-//    {
-//        return;
-//    }
-
-//}
-
 //one databae + swap to another one later
 //1. cmd
 //2. 2 sources ( + one more later) / different format / strategy pattern? should think about this if needed at the end depends on the slice
