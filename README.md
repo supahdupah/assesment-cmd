@@ -6,7 +6,8 @@ Requirements - .NET 6 (find it here https://dotnet.microsoft.com/en-us/download/
       -> "Build" solution inside VS
       -> Select "Importer" project as startup project
       -> Run with "Debug" or "Release"
-2. If you do not have visual studio
-      -> Download Release
+2. If you do not have visual studio (.NET 6 still required)
+      -> Download file "release.rar" (https://github.com/supahdupah/assesment-cmd/releases/tag/v1.0.0)
+      -> Extract files
       -> Run "Importer.exe"
       
