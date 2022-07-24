@@ -1,5 +1,5 @@
 # assesment-cmd
-How to run the application?
+## How to run the application?
 Requirements - .NET 6 (find it here https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 1. If you have Visual Studio 
       -> Clone this repository 
