@@ -9,7 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D9AC5E0-BA2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1959F03D-0429-4803-97E2-4DA7B338D19B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImporterShould", "tests\ImporterShould\ImporterShould.csproj", "{0C0E0351-B73A-4398-8CE8-E2891926BD64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImporterShould", "tests\ImporterShould\ImporterShould.csproj", "{0C0E0351-B73A-4398-8CE8-E2891926BD64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".repo", ".repo", "{6F67A089-D397-41E5-A049-04F2A58EF7E7}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		randomforweekend = randomforweekend
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "feed-products", "feed-products", "{C7AF2EFB-00DC-4B18-8C3B-9920A07EAF24}"
+	ProjectSection(SolutionItems) = preProject
+		feed-products\capterra.yaml = feed-products\capterra.yaml
+		feed-products\softwareadvice.json = feed-products\softwareadvice.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
