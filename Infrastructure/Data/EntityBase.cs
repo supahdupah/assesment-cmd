@@ -1,4 +1,4 @@
-﻿namespace Infrastructure
+﻿namespace Common.Data
 {
     public abstract class EntityBase
     {

@@ -2,6 +2,6 @@
 {
     public interface IYamlDeserializer
     {
-        Model Deserialize(string content);
+        List<Model> Deserialize(string content);
     }
 }

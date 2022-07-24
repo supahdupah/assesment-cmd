@@ -1,6 +1,4 @@
-﻿using Infrastructure;
-
-namespace Operations.Features.v1.ImportCapterra
+﻿namespace Operations.Features.v1.ImportCapterra
 {
     public class ImportCapterraResponse
     {

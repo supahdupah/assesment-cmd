@@ -1,4 +1,4 @@
-﻿using Infrastructure;
+﻿using Common.Data;
 
 namespace Operations.Features.v1.ImportSoftwareAdvice.Mappers
 {

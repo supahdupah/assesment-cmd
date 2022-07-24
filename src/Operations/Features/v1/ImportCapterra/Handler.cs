@@ -1,4 +1,4 @@
-﻿using Infrastructure;
+﻿using Common.Data;
 using MediatR;
 using Newtonsoft.Json;
 using Operations.Features.v1.ImportCapterra.Deserializer;
@@ -22,19 +22,27 @@ namespace Operations.Features.v1.ImportCapterra
         //without knowing full requirements many things could be done differently
         public async Task<ImportCapterraResponse> Handle(ImportCapterraRequest request, CancellationToken cancellationToken)
         {
-            var stringResult = await _fileReader.ReadFileAsync(request.FilePath, cancellationToken);
-            if (stringResult == null)
-                throw new InvalidOperationException();
-
-            var model = _yamlDeserializer.Deserialize(stringResult);
-            var entities = Mappers.Mapper.MapToEntities(model);
-
-            await _repository.CreateBatch(entities);
-            
-            return new ImportCapterraResponse
+            try
             {
-                ImportedData = JsonConvert.SerializeObject(entities)
-            };
+                var stringResult = await _fileReader.ReadFileAsync(request.FilePath, cancellationToken);
+                if (stringResult == null)
+                    throw new InvalidOperationException();
+
+                var model = _yamlDeserializer.Deserialize(stringResult);
+                var entities = Mappers.Mapper.MapToEntities(model);
+
+                await _repository.CreateBatch(entities);
+
+                return new ImportCapterraResponse
+                {
+                    ImportedData = JsonConvert.SerializeObject(entities)
+                };
+            }
+            catch (Exception e)
+            {
+                //handle as needed with further requirements
+                throw;
+            }
         }
     }
 }

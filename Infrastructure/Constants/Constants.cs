@@ -1,4 +1,4 @@
-﻿namespace Importer.Constants
+﻿namespace Common.Constants
 {
     //as the files can be stored anywhere or taken from anywhere
     public class Constants

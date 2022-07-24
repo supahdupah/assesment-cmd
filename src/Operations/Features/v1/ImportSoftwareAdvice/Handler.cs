@@ -1,4 +1,4 @@
-﻿using Infrastructure;
+﻿using Common.Data;
 using MediatR;
 using Newtonsoft.Json;
 using Operations.Features.v1.ImportSoftwareAdvice.Deserializer;
@@ -22,19 +22,27 @@ namespace Operations.Features.v1.ImportSoftwareAdvice
         //without knowing full requirements many things could be done differently
         public async Task<ImportSoftwareAdviceResponse> Handle(ImportSoftwareAdviceRequest request, CancellationToken cancellationToken)
         {
-            var stringResult = await _fileReader.ReadFileAsync(request.FilePath, cancellationToken);
-            if (stringResult == null)
-                throw new InvalidOperationException();
-
-            var model = _jsonDeserializer.Deserialize(stringResult);
-            var entities = Mappers.Mapper.MapToEntities(model);
-
-            await _repository.CreateBatch(entities);
-
-            return new ImportSoftwareAdviceResponse()
+            try
             {
-                ImportedData = JsonConvert.SerializeObject(entities)
-            };
+                var stringResult = await _fileReader.ReadFileAsync(request.FilePath, cancellationToken);
+                if (stringResult == null)
+                    throw new InvalidOperationException();
+
+                var model = _jsonDeserializer.Deserialize(stringResult);
+                var entities = Mappers.Mapper.MapToEntities(model);
+
+                await _repository.CreateBatch(entities);
+
+                return new ImportSoftwareAdviceResponse()
+                {
+                    ImportedData = JsonConvert.SerializeObject(entities)
+                };
+            }
+            catch (Exception e)
+            {
+                //handle as needed with further requirements
+                throw;
+            }
         }
     }
 }

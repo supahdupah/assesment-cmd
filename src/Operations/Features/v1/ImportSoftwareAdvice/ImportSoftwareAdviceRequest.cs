@@ -1,5 +1,4 @@
-﻿using Infrastructure;
-using MediatR;
+﻿using MediatR;
 
 namespace Operations.Features.v1.ImportSoftwareAdvice
 {

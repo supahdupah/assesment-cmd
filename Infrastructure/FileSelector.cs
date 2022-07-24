@@ -1,4 +1,4 @@
-﻿namespace Importer
+﻿namespace Common
 {
     //in reality this should not be required as the files are ususally stored externally 
     // if not requires refactor

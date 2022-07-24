@@ -1,4 +1,4 @@
-﻿using Infrastructure;
+﻿using Common.Data;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Operations.Features.v1.ImportCapterra.Deserializer;
