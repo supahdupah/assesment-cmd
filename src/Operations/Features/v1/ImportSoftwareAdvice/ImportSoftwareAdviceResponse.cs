@@ -2,5 +2,6 @@
 {
     public class ImportSoftwareAdviceResponse
     {
+        public string ImportedData { get; set; }
     }
 }

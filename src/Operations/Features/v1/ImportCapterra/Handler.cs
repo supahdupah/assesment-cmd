@@ -1,17 +1,40 @@
 ﻿using Infrastructure;
 using MediatR;
+using Newtonsoft.Json;
+using Operations.Features.v1.ImportCapterra.Deserializer;
+using Operations.Shared;
 
 namespace Operations.Features.v1.ImportCapterra
 {
     public class Handler : IRequestHandler<ImportCapterraRequest, ImportCapterraResponse>
     {
-        public Task<ImportCapterraResponse> Handle(ImportCapterraRequest request, CancellationToken cancellationToken)
+        private readonly IFileReader _fileReader;
+        private readonly IYamlDeserializer _yamlDeserializer;
+        private readonly IProductRepository _repository;
+
+        public Handler(IFileReader fileReader, IYamlDeserializer yamlDeserializer, IProductRepository repository)
         {
-            //    //validate file
-            //    //read
-            //    //parse
-            //    //insert to db
-            throw new NotImplementedException();
+            _fileReader = fileReader;
+            _yamlDeserializer = yamlDeserializer;
+            _repository = repository;
+        }
+
+        //without knowing full requirements many things could be done differently
+        public async Task<ImportCapterraResponse> Handle(ImportCapterraRequest request, CancellationToken cancellationToken)
+        {
+            var stringResult = await _fileReader.ReadFileAsync(request.FilePath, cancellationToken);
+            if (stringResult == null)
+                throw new InvalidOperationException();
+
+            var model = _yamlDeserializer.Deserialize(stringResult);
+            var entities = Mappers.Mapper.MapToEntities(model);
+
+            await _repository.CreateBatch(entities);
+            
+            return new ImportCapterraResponse
+            {
+                ImportedData = JsonConvert.SerializeObject(entities)
+            };
         }
     }
 }

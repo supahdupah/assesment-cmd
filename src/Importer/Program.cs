@@ -25,18 +25,6 @@ public static class Program
                 services.AddV1Services();
             });
 }
-//one databae + swap to another one later
-//1. cmd
-//2. 2 sources ( + one more later) / different format / strategy pattern? should think about this if needed at the end depends on the slice
-//could try vertical slice for each source also or one for both (depends whats after)
-//3.should / could do feature / version
-//4.Command Handler(validate / read / parse ?/ insert to database)
-//file read
-//5. Validations for files / exception handlers
-
-//6. Repo
-//7. Models
-
 //logging
 //DI?
 //unit tests / how to run

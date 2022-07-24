@@ -47,23 +47,26 @@ namespace Importer
                         using (var scope = _serviceScopeFactory.CreateScope())
                         {
                             var _mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-                            var request = new ImportSoftwareAdviceRequest()
+                            var request = new ImportCapterraRequest()
                             {
                                 FilePath = FileSelector.GetFilePath(SourceType.Capterra)
                             };
-                            var result = await _mediator.Send(new ImportCapterraRequest(), cancellationToken);
+
+                            var result = await _mediator.Send(request, cancellationToken);
+                            Console.WriteLine(result.ImportedData);
                         }
                         break;
                     case 2:
                         using (var scope = _serviceScopeFactory.CreateScope())
                         {
-
                             var _mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
                             var request = new ImportSoftwareAdviceRequest()
                             {
                                 FilePath = FileSelector.GetFilePath(SourceType.SoftwareAdvice)
                             };
+
                             var result = await _mediator.Send(request, cancellationToken);
+                            Console.WriteLine(result.ImportedData);
                         }
                         break;
                     case 4:
