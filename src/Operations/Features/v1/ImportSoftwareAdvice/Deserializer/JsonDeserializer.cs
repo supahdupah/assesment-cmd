@@ -23,6 +23,7 @@ namespace Operations.Features.v1.ImportSoftwareAdvice.Deserializer
             }
             catch (Exception)
             {
+                //json exceptions handle
                 throw;
             }
         }
