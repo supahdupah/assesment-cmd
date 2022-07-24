@@ -40,6 +40,7 @@ namespace Operations.Features.v1.ImportSoftwareAdvice
             }
             catch (Exception e)
             {
+                //create my own exceptions if needed
                 //handle as needed with further requirements
                 throw;
             }
