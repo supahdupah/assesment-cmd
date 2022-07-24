@@ -11,41 +11,43 @@ while (exit == false)
     Console.WriteLine("\n 4. Exit Program \n");
 
     var input = Console.ReadLine();
-    int selection = 0;
+    int selection;
     var isInt = int.TryParse(input, out selection);
 
     if (!isInt)
     {
         Console.WriteLine("Selection and entered key must be a number \n");
+        return;
     }
-    var handler = new Handler();
+
+
+    // split/refactor later if needed with a selector/strategy
+    // 
+    var capterraHandler = new Operations.Features.v1.ImportCapterra.Handler();
+    var softwareAdviceHandler = new Operations.Features.v1.ImportSoftwareAdvice.Handler();
+
     switch (selection)
     {
-        case 0: 
-            await handler.Handle();
-            break;
         case 1:
-            await handler.Handle();
+            await capterraHandler.HandleAsync(new Operations.Features.v1.ImportCapterra.Command() { FilePath = });
             break;
         case 2:
-            await handler.Handle();
+            await softwareAdviceHandler.HandleAsync( new Operations.Features.v1.ImportSoftwareAdvice.Command());
             break;
         case 4:
             exit = true;
             break;
     }
 }
-public class Handler
-{
-    public async Task Handle()
-    {
-        return;
-    }
-    //validate file
-    //read
-    //parse
-    //insert to db
-}
+
+//public class Handler
+//{
+//    public async Task Handle()
+//    {
+//        return;
+//    }
+
+//}
 
 //one databae + swap to another one later
 //1. cmd
